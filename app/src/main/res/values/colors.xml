@@ -5,4 +5,7 @@
     <color name="gray">#AAAAAA</color>
     <color name="bg_ed">#FFF0F5</color>
     <color name="bg_btn">#4838d1</color>
+    <color name="bg_input">#FFF0F5</color>
+    <color name="red">#DD0000</color>
+    <color name="bg_signup">#e0d816</color>
 </resources>
