@@ -5,10 +5,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 
 import com.google.android.material.tabs.TabLayout;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, OnTabButtonClickListener{
 
     TabLayout tabLayout;
     ViewPager2 viewPager2;
@@ -52,5 +54,15 @@ public class MainActivity extends AppCompatActivity {
                 tabLayout.selectTab(tabLayout.getTabAt(position));
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+
+    }
+
+    @Override
+    public void onTabButtonClick(int tabIndex) {
+        viewPager2.setCurrentItem(tabIndex);
     }
 }

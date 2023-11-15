@@ -26,7 +26,8 @@
             android:layout_marginBottom="20dp"
             android:textColor="@color/black"
             android:textColorHint="@color/gray"
-            android:background="@drawable/custom_input" />
+            android:background="@drawable/custom_input"
+            android:maxLines="1"/>
 
         <EditText
             android:layout_width="match_parent"
@@ -38,7 +39,8 @@
             android:layout_marginBottom="20dp"
             android:textColor="@color/black"
             android:textColorHint="@color/gray"
-            android:background="@drawable/custom_input"/>
+            android:background="@drawable/custom_input"
+            android:maxLines="1"/>
 
         <EditText
             android:layout_width="match_parent"
@@ -50,7 +52,8 @@
             android:layout_marginBottom="20dp"
             android:textColor="@color/black"
             android:textColorHint="@color/gray"
-            android:background="@drawable/custom_input"/>
+            android:background="@drawable/custom_input"
+            android:maxLines="1"/>
 
         <Button
             android:layout_width="match_parent"
