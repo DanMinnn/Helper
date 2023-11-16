@@ -1,68 +1,42 @@
 package com.example.helper;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.viewpager2.widget.ViewPager2;
-
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageButton;
 
-import com.google.android.material.tabs.TabLayout;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, OnTabButtonClickListener{
+import com.example.helper.Fragment.HomeFragment;
+import com.example.helper.Fragment.ProfileFragment;
+import com.example.helper.Fragment.SearchFragment;
+import com.example.helper.databinding.ActivityMainBinding;
 
-    TabLayout tabLayout;
-    ViewPager2 viewPager2;
-    FragmentAdapter fragmentAdapter;
+public class MainActivity extends AppCompatActivity {
+    ActivityMainBinding binding;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_dangky);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        replaceFragment(new SearchFragment());
+        binding.bottomNav.setOnItemSelectedListener(item -> {
+           int id = item.getItemId();
+           if(id == R.id.home){
+                replaceFragment(new SearchFragment());
+           } else if (id == R.id.person) {
+                replaceFragment(new ProfileFragment());
+           }
+           return true;
+        });
+    }
 
-        tabLayout = findViewById(R.id.tab_layout);
-        viewPager2 = findViewById(R.id.viewpager);
-
-        tabLayout.addTab(tabLayout.newTab().setText("01"));
-        tabLayout.addTab(tabLayout.newTab().setText("02"));
-
+    private void replaceFragment(Fragment fragment){
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentAdapter = new FragmentAdapter(fragmentManager, getLifecycle());
-        viewPager2.setAdapter(fragmentAdapter);
-
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager2.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-
-        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageSelected(int position) {
-                tabLayout.selectTab(tabLayout.getTabAt(position));
-            }
-        });
-    }
-
-    @Override
-    public void onClick(View v) {
-
-    }
-
-    @Override
-    public void onTabButtonClick(int tabIndex) {
-        viewPager2.setCurrentItem(tabIndex);
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.framelayout, fragment);
+        fragmentTransaction.commit();
     }
 }
