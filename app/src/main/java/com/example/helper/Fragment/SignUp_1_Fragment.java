@@ -1,4 +1,4 @@
-package com.example.helper;
+package com.example.helper.Fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +9,9 @@ import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.example.helper.OnTabButtonClickListener;
+import com.example.helper.R;
 
 public class SignUp_1_Fragment extends Fragment implements View.OnClickListener{
     ImageButton img_btn;
